@@ -1,0 +1,65 @@
+enum StateClient {
+  POTENCIAL @map("potencial")
+  ACTIVO    @map("activo")
+  INACTIVO  @map("inactivo")
+}
+
+enum StateProject {
+  PROCESO    @map("proceso")
+  TRUNCO     @map("trunco")
+  FINALIZADO @map("finalizado")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id            Int             @id @default(autoincrement())
+  email         String          @unique @db.VarChar(70)
+  name          String?         @db.VarChar(100)
+  password      String          @db.VarChar(255)
+  Type_projects Type_projects[]
+  Projects      Projects[]
+}
+
+model Clients {
+  id               Int         @id @default(autoincrement())
+  name             String      @db.VarChar(25)
+  father_last_name String      @db.VarChar(25)
+  mother_last_name String      @db.VarChar(25)
+  email            String      @unique @db.VarChar(70)
+  phone            String      @db.VarChar(20)
+  password         String      @db.VarChar(255)
+  state            StateClient @default(POTENCIAL)
+  Projects         Projects[]
+}
+
+model Type_projects {
+  id       Int        @id @default(autoincrement())
+  user_id  Int
+  user     Users      @relation(fields: [user_id], references: [id])
+  name     String     @unique @db.VarChar(100)
+  Projects Projects[]
+}
+
+model Projects {
+  id          Int          @id @default(autoincrement())
+  name        String       @unique @db.VarChar(100)
+  description String       @db.Text
+  state       StateProject @default(PROCESO)
+
+  user_id Int
+  user    Users @relation(fields: [user_id], references: [id])
+
+  client_id Int
+  client    Clients @relation(fields: [client_id], references: [id])
+
+  type_project_id Int
+  type_project    Type_projects @relation(fields: [type_project_id], references: [id])
+}
