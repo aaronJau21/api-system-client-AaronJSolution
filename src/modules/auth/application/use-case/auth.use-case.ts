@@ -5,6 +5,7 @@ import {
 } from 'src/modules/users/domain/user.repository';
 import { AuthDto } from '../../interfaces/dtos/auth.dto';
 import { Inject, NotFoundException } from '@nestjs/common';
+import { AuthEntity } from '../../domain/auth.entity';
 
 export class AuthUseCase {
   constructor(
@@ -12,7 +13,7 @@ export class AuthUseCase {
     private readonly hash: HashPasswordService,
   ) {}
 
-  async execute(data: AuthDto) {
+  async execute(data: AuthDto): Promise<AuthEntity> {
     const user = await this.userRepository.findByEmail(data.email);
 
     if (!user) {
@@ -28,6 +29,6 @@ export class AuthUseCase {
       throw new NotFoundException('Credenciales inválidas');
     }
 
-    return user;
+    return new AuthEntity(user.id as number, user.email, user.name);
   }
 }
