@@ -6,11 +6,13 @@ import {
 import { AuthDto } from '../../interfaces/dtos/auth.dto';
 import { Inject, NotFoundException } from '@nestjs/common';
 import { AuthEntity } from '../../domain/auth.entity';
+import { JsonWtService } from 'src/lib/json-wt/json-wt.service';
 
 export class AuthUseCase {
   constructor(
     @Inject(USER_REPOSITORY) private readonly userRepository: IUserRepository,
     private readonly hash: HashPasswordService,
+    private readonly jsonWtService: JsonWtService,
   ) {}
 
   async execute(data: AuthDto): Promise<AuthEntity> {
@@ -29,6 +31,12 @@ export class AuthUseCase {
       throw new NotFoundException('Credenciales inválidas');
     }
 
-    return new AuthEntity(user.id as number, user.email, user.name);
+    const token = await this.jsonWtService.createToken(
+      user.id as number,
+      user.name,
+      user.email,
+    );
+
+    return new AuthEntity(user.id as number, user.email, user.name, token);
   }
 }
