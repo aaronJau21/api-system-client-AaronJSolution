@@ -22,7 +22,7 @@ datasource db {
 model Users {
   id            Int             @id @default(autoincrement())
   email         String          @unique @db.VarChar(70)
-  name          String?         @db.VarChar(100)
+  name          String         @db.VarChar(100)
   password      String          @db.VarChar(255)
   Type_projects Type_projects[]
   Projects      Projects[]
