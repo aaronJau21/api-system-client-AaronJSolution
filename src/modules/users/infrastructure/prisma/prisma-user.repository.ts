@@ -27,11 +27,38 @@ export class PrismaUserRepository implements IUserRepository {
     return user ? this.toEntity(user) : undefined;
   }
 
+  async findById(id: number): Promise<UserEntity | undefined> {
+    const user = await this.prisma.users.findUnique({
+      where: {
+        id,
+      },
+    });
+    return user ? this.toEntity(user) : undefined;
+  }
+
+  async updateUser(id: number, user: UserEntity): Promise<UserEntity> {
+    const userUpdate = await this.prisma.users.update({
+      where: { id },
+      data: {
+        email: user.email,
+        name: user.name,
+        password: user.password,
+      },
+    });
+    return this.toEntity(userUpdate);
+  }
+
+  async deleteUser(id: number): Promise<void> {
+    await this.prisma.users.delete({
+      where: { id },
+    });
+  }
+
   private toEntity(user: PrismaUser): UserEntity {
     return new UserEntity(
       user.id,
       user.email,
-      user.name as string, // Assuming name is not null, otherwise handle it
+      user.name as string,
       user.password,
     );
   }
