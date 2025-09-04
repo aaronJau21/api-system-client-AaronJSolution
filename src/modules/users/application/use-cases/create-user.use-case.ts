@@ -1,12 +1,12 @@
 import { ConflictException, Inject } from '@nestjs/common';
 import { UserEntity } from '../../domain/user.entity';
-import type { IUserRepository } from '../../domain/user.repository';
+import { USER_REPOSITORY, type IUserRepository } from '../../domain/user.repository';
 import { CreateUserDto } from '../../interfaces/dto/create-user.dto';
 import { HashPasswordService } from 'src/lib/hash-password/hash-password.service';
 
 export class CreateUserUseCase {
   constructor(
-    @Inject('UserRepository') private readonly userRepository: IUserRepository,
+    @Inject(USER_REPOSITORY) private readonly userRepository: IUserRepository,
     private readonly hashPasswordService: HashPasswordService,
   ) {}
 
