@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { CreateClientDto } from './dtos/create-client.dto';
 import {
   CreateClientUseCase,
@@ -18,7 +18,10 @@ export class ClientsController {
   }
 
   @Get()
-  async getAll() {
-    return await this.getAllClientsUseCase.execute();
+  async getAll(
+    @Query('page') page: string = '1',
+    @Query('limit') limit: string = '10',
+  ) {
+    return await this.getAllClientsUseCase.execute(+page, +limit);
   }
 }

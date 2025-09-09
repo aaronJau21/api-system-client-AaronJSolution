@@ -8,7 +8,7 @@ export class GetAllClientUseCase {
     private readonly clientRepository: IClientRepository,
   ) {}
 
-  public async execute() {
-    return await this.clientRepository.getAll();
+  public async execute(page: number = 1, limit: number = 10) {
+    return await this.clientRepository.getAll(page, limit);
   }
 }
