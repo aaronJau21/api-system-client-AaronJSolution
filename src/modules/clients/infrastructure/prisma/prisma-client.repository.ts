@@ -31,6 +31,7 @@ export class PrismaClientRepository implements IClientRepository {
           phone: true,
           state: true,
           password: false,
+          company_name: true,
         },
       }),
       this.prisma.clients.count(),
@@ -45,6 +46,7 @@ export class PrismaClientRepository implements IClientRepository {
             client.email,
             client.phone,
             client.state,
+            client.company_name,
           ),
       ),
       meta: {
@@ -90,6 +92,7 @@ export class PrismaClientRepository implements IClientRepository {
       client.email,
       client.phone,
       client.state,
+      client.company_name,
     );
   }
 }

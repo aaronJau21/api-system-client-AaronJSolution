@@ -8,5 +8,6 @@ export class ReponseClientDto {
     public email: string,
     public phone: string,
     public state: StateClient,
+    public company_name: string,
   ) {}
 }
