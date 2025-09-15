@@ -1,4 +1,4 @@
-import { StateClient } from '@prisma/client';
+// import { StateClient } from '@prisma/client';
 import { IsEnum, IsString } from 'class-validator';
 
 export class CreateClientDto {
@@ -14,9 +14,9 @@ export class CreateClientDto {
   @IsString()
   public phone: string;
 
-  @IsEnum(StateClient)
-  @IsString()
-  public state: StateClient;
+  // @IsEnum(StateClient)
+  // @IsString()
+  // public state: StateClient;
 
   @IsString()
   public company_name: string;

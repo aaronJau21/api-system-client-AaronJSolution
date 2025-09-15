@@ -16,7 +16,7 @@ export class CreateClientUseCase {
       data.last_name,
       data.email,
       data.phone,
-      data.state,
+      'POTENCIAL',
       data.company_name,
     );
     return await this.clientRepository.create(client);
