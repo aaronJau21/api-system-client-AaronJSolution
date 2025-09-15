@@ -6,10 +6,7 @@ export class CreateClientDto {
   public name: string;
 
   @IsString()
-  public father_last_name: string;
-
-  @IsString()
-  public mother_last_name: string;
+  public last_name: string;
 
   @IsString()
   public email: string;
@@ -20,4 +17,7 @@ export class CreateClientDto {
   @IsEnum(StateClient)
   @IsString()
   public state: StateClient;
+
+  @IsString()
+  public company_name: string;
 }

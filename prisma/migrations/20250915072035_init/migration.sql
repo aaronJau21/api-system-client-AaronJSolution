@@ -13,11 +13,11 @@ CREATE TABLE `Users` (
 CREATE TABLE `Clients` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(25) NOT NULL,
-    `father_last_name` VARCHAR(25) NOT NULL,
-    `mother_last_name` VARCHAR(25) NOT NULL,
+    `last_name` VARCHAR(25) NOT NULL,
     `email` VARCHAR(70) NOT NULL,
     `phone` VARCHAR(20) NOT NULL,
     `password` VARCHAR(255) NULL,
+    `company_name` VARCHAR(150) NOT NULL,
     `state` ENUM('potencial', 'activo', 'inactivo') NOT NULL DEFAULT 'potencial',
 
     UNIQUE INDEX `Clients_email_key`(`email`),

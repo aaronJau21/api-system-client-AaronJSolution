@@ -13,11 +13,11 @@ export class CreateClientUseCase {
     const client = new ClientEntity(
       undefined,
       data.name,
-      data.father_last_name,
-      data.mother_last_name,
+      data.last_name,
       data.email,
       data.phone,
       data.state,
+      data.company_name,
     );
     return await this.clientRepository.create(client);
   }

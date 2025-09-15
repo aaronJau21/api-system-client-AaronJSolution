@@ -26,8 +26,7 @@ export class PrismaClientRepository implements IClientRepository {
         select: {
           id: true,
           name: true,
-          father_last_name: true,
-          mother_last_name: true,
+          last_name: true,
           email: true,
           phone: true,
           state: true,
@@ -42,8 +41,7 @@ export class PrismaClientRepository implements IClientRepository {
           new ReponseClientDto(
             client.id,
             client.name,
-            client.father_last_name,
-            client.mother_last_name,
+            client.last_name,
             client.email,
             client.phone,
             client.state,
@@ -64,11 +62,11 @@ export class PrismaClientRepository implements IClientRepository {
     const newClient = await this.prisma.clients.create({
       data: {
         name: client.name,
-        father_last_name: client.father_last_name,
-        mother_last_name: client.mother_last_name,
+        last_name: client.last_name,
         email: client.email,
         phone: client.phone,
         state: client.state,
+        company_name: client.company_name,
       },
     });
 
@@ -88,8 +86,7 @@ export class PrismaClientRepository implements IClientRepository {
     return new ReponseClientDto(
       client.id,
       client.name,
-      client.father_last_name,
-      client.mother_last_name,
+      client.last_name,
       client.email,
       client.phone,
       client.state,

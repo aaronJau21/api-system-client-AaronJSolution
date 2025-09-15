@@ -6,11 +6,11 @@ export class ClientEntity {
   constructor(
     public id: number | undefined,
     public name: string,
-    public father_last_name: string,
-    public mother_last_name: string,
+    public last_name: string,
     public email: string,
     public phone: string,
     public state: StateClient,
+    public company_name: string,
     public password?: string | null | undefined,
   ) {}
 }
