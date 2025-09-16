@@ -98,6 +98,7 @@ export class PrismaClientRepository implements IClientRepository {
       where: { id },
       data: {
         state: data.state,
+        password: data.password,
       },
     });
 

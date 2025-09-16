@@ -6,6 +6,7 @@ import { PrismaClientRepository } from './infrastructure/prisma/prisma-client.re
 import { CreateClientUseCase } from './application/use-cases/create-client.use-case';
 import { GetAllClientUseCase } from './application/use-cases/get-all-client.use-case';
 import { UpdateStateClientUseCase } from './application/use-cases';
+import { LibModule } from 'src/lib/lib.module';
 
 @Module({
   controllers: [ClientsController],
@@ -18,6 +19,6 @@ import { UpdateStateClientUseCase } from './application/use-cases';
     GetAllClientUseCase,
     UpdateStateClientUseCase,
   ],
-  imports: [PrismaModule],
+  imports: [PrismaModule, LibModule],
 })
 export class ClientsModule {}
