@@ -74,15 +74,30 @@ export class PrismaClientRepository implements IClientRepository {
 
     return this.toEntity(newClient);
   }
-  findById(id: number): Promise<ClientEntity | null> {
-    throw new Error('Method not implemented.');
+  async findById(id: number): Promise<ClientEntity | null> {
+    const client = await this.prisma.clients.findUnique({
+      where: { id },
+    });
+
+    if (!client) return null;
+
+    return new ClientEntity(
+      client.id,
+      client.name,
+      client.last_name,
+      client.email,
+      client.phone,
+      client.state,
+      client.company_name,
+      client.password,
+    );
   }
 
-  async updateState(id: number, state: StateClient): Promise<ReponseClientDto> {
+  async updateState(id: number, data: ClientEntity): Promise<ReponseClientDto> {
     const updatedClient = await this.prisma.clients.update({
       where: { id },
       data: {
-        state,
+        state: data.state,
       },
     });
 

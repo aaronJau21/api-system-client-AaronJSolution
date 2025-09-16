@@ -13,6 +13,7 @@ import {
   GetAllClientUseCase,
   UpdateStateClientUseCase,
 } from '../application/use-cases';
+import { UpdateStateClientDto } from './dtos/update-state-client.dto';
 
 @Controller('clients')
 export class ClientsController {
@@ -36,7 +37,10 @@ export class ClientsController {
   }
 
   @Patch('state/:id')
-  async updateState(@Body() state: string, @Param('id') id: number) {
-    return await this.updateStateClientUseCase.execute(id, state);
+  async updateState(
+    @Body() data: UpdateStateClientDto,
+    @Param('id') id: string,
+  ) {
+    return await this.updateStateClientUseCase.execute(+id, data);
   }
 }

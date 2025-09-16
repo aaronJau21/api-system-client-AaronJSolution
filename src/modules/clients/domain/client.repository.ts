@@ -13,6 +13,9 @@ export interface IClientRepository {
   create(client: ClientEntity): Promise<ReponseClientDto>;
   findById(id: number): Promise<ClientEntity | null>;
   update(client: ClientEntity): Promise<ClientEntity>;
-  updateState(id: number, state: string): Promise<ReponseClientDto>;
+  updateState(
+    id: number,
+    state: ClientEntity,
+  ): Promise<ReponseClientDto>;
   delete(id: number): Promise<void>;
 }
