@@ -1,8 +1,17 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { CreateClientDto } from './dtos/create-client.dto';
 import {
   CreateClientUseCase,
   GetAllClientUseCase,
+  UpdateStateClientUseCase,
 } from '../application/use-cases';
 
 @Controller('clients')
@@ -10,6 +19,7 @@ export class ClientsController {
   constructor(
     private readonly createClientUseCase: CreateClientUseCase,
     private readonly getAllClientsUseCase: GetAllClientUseCase,
+    private readonly updateStateClientUseCase: UpdateStateClientUseCase,
   ) {}
 
   @Post()
@@ -23,5 +33,10 @@ export class ClientsController {
     @Query('limit') limit: string = '10',
   ) {
     return await this.getAllClientsUseCase.execute(+page, +limit);
+  }
+
+  @Patch('state/:id')
+  async updateState(@Body() state: string, @Param('id') id: number) {
+    return await this.updateStateClientUseCase.execute(id, state);
   }
 }

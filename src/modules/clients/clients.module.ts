@@ -5,6 +5,7 @@ import { CLIENT_REPOSITORY } from './domain/client.entity';
 import { PrismaClientRepository } from './infrastructure/prisma/prisma-client.repository';
 import { CreateClientUseCase } from './application/use-cases/create-client.use-case';
 import { GetAllClientUseCase } from './application/use-cases/get-all-client.use-case';
+import { UpdateStateClientUseCase } from './application/use-cases';
 
 @Module({
   controllers: [ClientsController],
@@ -15,6 +16,7 @@ import { GetAllClientUseCase } from './application/use-cases/get-all-client.use-
     },
     CreateClientUseCase,
     GetAllClientUseCase,
+    UpdateStateClientUseCase,
   ],
   imports: [PrismaModule],
 })

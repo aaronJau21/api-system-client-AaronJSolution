@@ -4,7 +4,7 @@ import { ClientEntity } from '../../domain/client.entity';
 import { IClientRepository } from '../../domain/client.repository';
 
 import { ReponseClientDto } from '../responseDto/response-client.dto.';
-import { Clients } from '@prisma/client';
+import { Clients, StateClient } from '@prisma/client';
 
 @Injectable()
 export class PrismaClientRepository implements IClientRepository {
@@ -77,6 +77,18 @@ export class PrismaClientRepository implements IClientRepository {
   findById(id: number): Promise<ClientEntity | null> {
     throw new Error('Method not implemented.');
   }
+
+  async updateState(id: number, state: StateClient): Promise<ReponseClientDto> {
+    const updatedClient = await this.prisma.clients.update({
+      where: { id },
+      data: {
+        state,
+      },
+    });
+
+    return this.toEntity(updatedClient);
+  }
+
   update(client: ClientEntity): Promise<ClientEntity> {
     throw new Error('Method not implemented.');
   }
