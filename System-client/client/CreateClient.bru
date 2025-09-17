@@ -1,0 +1,25 @@
+meta {
+  name: CreateClient
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3300/clients
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Duki",
+    "last_name": "Argentina",
+    "email": "duki@duki.com",
+    "phone": "789456123",
+    "company_name": "Duki Producciones"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

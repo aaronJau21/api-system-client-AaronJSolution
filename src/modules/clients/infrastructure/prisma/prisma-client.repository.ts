@@ -105,10 +105,10 @@ export class PrismaClientRepository implements IClientRepository {
     return this.toEntity(updatedClient);
   }
 
-  update(client: ClientEntity): Promise<ClientEntity> {
+  async update(id: number, client: ClientEntity): Promise<ClientEntity> {
     throw new Error('Method not implemented.');
   }
-  delete(id: number): Promise<void> {
+  async delete(id: number): Promise<boolean> {
     throw new Error('Method not implemented.');
   }
 
