@@ -3,7 +3,10 @@ import { TypeProjectsController } from './interfaces/type-projects.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { PRODUCT_TYPE } from './domain/product-type.entity';
 import { TypeProjectsRepository } from './infrastructure/prisma/prisma-type-projects.repository';
-import { CreateTypeProjectsUseCase } from './application/use-case/create-type-projects.use-case';
+import {
+  CreateTypeProjectsUseCase,
+  GetAllTypeProjectsUseCase,
+} from './application/use-case';
 
 @Module({
   controllers: [TypeProjectsController],
@@ -13,6 +16,7 @@ import { CreateTypeProjectsUseCase } from './application/use-case/create-type-pr
       useClass: TypeProjectsRepository,
     },
     CreateTypeProjectsUseCase,
+    GetAllTypeProjectsUseCase,
   ],
   imports: [PrismaModule],
 })

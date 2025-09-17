@@ -24,6 +24,19 @@ export class TypeProjectsRepository implements ITypeProjectsRepository {
     );
   }
 
+  async getAll(): Promise<ProductTypeEntity[]> {
+    const typeProjects = await this.prisma.type_projects.findMany();
+
+    return typeProjects.map(
+      (typeProject) =>
+        new ResponseTypeProjectsDto(
+          typeProject.id,
+          typeProject.name,
+          typeProject.user_id,
+        ),
+    );
+  }
+
   async findById(id: number): Promise<ProductTypeEntity | null> {
     throw new Error('Method not implemented.');
   }
