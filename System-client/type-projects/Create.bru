@@ -6,8 +6,15 @@ meta {
 
 post {
   url: http://localhost:3300/type-projects
-  body: none
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "name": "CRM",
+    "user_id": 1
+  }
 }
 
 settings {
