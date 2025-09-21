@@ -1,0 +1,16 @@
+services:
+  nestjs:
+    container_name: system-client
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    networks:
+      - system-network
+
+networks:
+  system-network:
+    external: true

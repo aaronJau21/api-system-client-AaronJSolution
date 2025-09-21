@@ -1,0 +1,67 @@
+
+# Node modules - deben excluirse del contexto para evitar enviar dependencias al build
+node_modules/
+
+# Archivos de build y artefactos
+dist/
+build/
+
+# Archivos de entorno y secretos
+.env
+.env.*
+
+# Logs
+logs/
+*.log
+
+# Cobertura de tests
+coverage/
+*.lcov
+.nyc_output/
+
+# IDE y editores
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Archivos temporales y de sistema
+tmp/
+temp/
+*.tmp
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Pruebas y configuraciones locales
+test/
+tests/
+*.spec.ts
+*.spec.js
+
+# Archivos de configuración local o de CI que no son necesarios
+.circleci/
+.github/
+/.git
+
+# No excluir: Dockerfile, package.json, pnpm-lock.yaml, pnpm-workspace.yaml, prisma/
+# Estos archivos son necesarios para construir la imagen correctamente
+
+# Archivos binarios o build de terceros
+*.exe
+*.dll
+*.so
+
+# Documentación local generada
+docs/
+
+# Runtime DB files locales
+*.db
+*.sqlite
+*.sqlite3
+
+# Bruno/otros archivos de cliente que no se necesitan en la imagen
+System-client/
